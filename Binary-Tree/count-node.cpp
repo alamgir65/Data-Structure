@@ -44,11 +44,21 @@ int count_node(Node* root){
     if(!root) return 0;
     return count_node(root->left) + count_node(root->right) + 1;
 }
+int count_leaf_node(Node *root){
+    if(!root) return 0;
+    if(!root->left && !root->right) return 1;
+    return count_leaf_node(root->left)+count_leaf_node(root->right);
+}
+int max_height(Node *root){
+    if(!root) return 0;
+    return max(max_height(root->left),max_height(root->right))+1;
+}
 int main()
 {
     Node *root = input();
-    cout<<"Number of Nodes : "<<count_node(root);
-    cout<<endl;
+    cout<<"Number of Nodes : "<<count_node(root)<<endl;
+    cout<<"Number of Leaf Nodes : "<<count_leaf_node(root)<<endl;
+    cout<<"Maxmimum Height of Tree : "<<max_height(root)<<endl;
     pre_order(root);
     return 0;
 }
